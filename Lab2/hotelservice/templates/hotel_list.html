@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .hotel-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .hotel-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .hotel-item h2 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .hotel-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hotels List</h1>
+    {% if hotels %}
+        <ul class="hotel-list">
+            {% for hotel in hotels %}
+                <li class="hotel-item">
+                    <h2>{{ hotel.name }}</h2>
+                    <p><strong>Address:</strong> {{ hotel.address }}</p>
+                    <p><strong>Rating:</strong> {{ hotel.rating }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hotels found.</p>
+    {% endif %}
+</body>
+</html>

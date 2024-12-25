@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+            color: #4b2e0d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(75, 46, 13, 0.8);
+            color: white;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4b2e0d;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #6a3e1a;
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #f4a261;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .cta:hover {
+            background: #e76f51;
+        }
+
+        .features {
+            text-align: center;
+            padding: 2rem;
+            background: #fff7f0;
+            color: #4b2e0d;
+            width: 100%;
+        }
+
+        .features h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .features .feature-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .features .feature {
+            flex: 1;
+            margin: 1rem;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .features .feature img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .features .feature h4 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(75, 46, 13, 0.8);
+            width: 100%;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hotel Booking</h1>
+        <nav>
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+            <a href="/booking/">Book Now</a>
+            <a href="/contact/">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to Hotel Booking</h2>
+        <p>Relax and enjoy your stay with the best deals and premium comfort.</p>
+        <a href="/booking/" class="cta">Book a Room</a>
+    </section>
+
+    <section class="features">
+        <h3>Why Choose Us?</h3>
+        <div class="feature-list">
+            <div class="feature">
+                <img src="https://images.squarespace-cdn.com/content/v1/63dde481bbabc6724d988548/39dcdb0e-b760-4e93-afd2-00b95ad63eae/1.jpg" alt="Luxury Rooms">
+                <h4>Luxury Rooms</h4>
+                <p>Experience the ultimate comfort in our elegantly designed rooms.</p>
+            </div>
+            <div class="feature">
+                <img src="https://media.istockphoto.com/id/506759726/photo/3d-great-deal-word-on-white-isolated-background.jpg?s=612x612&w=0&k=20&c=wn_SdHnT2NRyQqCfGj9IFXerJg5j0OXlUjHHIgFjXRk=" alt="Best Deals">
+                <h4>Best Deals</h4>
+                <p>Find exclusive discounts and packages tailored for you.</p>
+            </div>
+            <div class="feature">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPIydHLDG1as9j9ZZ3zyL7r-MsRvN6gSzmBg&s" alt="24/7 Support">
+                <h4>24/7 Support</h4>
+                <p>Our team is here to assist you anytime, anywhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 Hotel Booking. All rights reserved.
+    </footer>
+</body>
+</html>

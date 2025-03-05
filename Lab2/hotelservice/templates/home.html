@@ -60,6 +60,13 @@
             color: #6a3e1a;
         }
 
+        .cta-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .cta {
             display: inline-block;
             padding: 0.8rem 1.5rem;
@@ -112,6 +119,11 @@
             margin: 0.5rem 0;
         }
 
+        .review-section {
+            text-align: center;
+            padding: 2rem;
+        }
+
         footer {
             text-align: center;
             padding: 1rem;
@@ -136,7 +148,12 @@
     <section class="hero">
         <h2>Welcome to Hotel Booking</h2>
         <p>Relax and enjoy your stay with the best deals and premium comfort.</p>
-        <a href="/booking/" class="cta">Book a Room</a>
+        <div class="cta-container">
+            <a href="/booking/" class="cta">Book a Room</a>
+            <a href="/reviews/" class="cta">View Reviews</a>
+            <a href="/guests/" class="cta">View Guests</a>
+            <a href="/reservations/" class="cta">My Reservations</a>
+        </div>
     </section>
 
     <section class="features">
@@ -158,6 +175,12 @@
                 <p>Our team is here to assist you anytime, anywhere.</p>
             </div>
         </div>
+    </section>
+
+    <section class="review-section">
+        <h3>We value your feedback!</h3>
+        <p>Share your experience and help us improve our services.</p>
+        <a href="/review/" class="cta">Leave a Review</a>
     </section>
 
     <footer>

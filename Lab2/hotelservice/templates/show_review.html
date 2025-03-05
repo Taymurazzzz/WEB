@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffecd2;
+            color: #4b2e0d;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 15px;
+        }
+
+        .review-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #6a3e1a;
+        }
+
+        .review-card p {
+            margin: 5px 0;
+        }
+
+        .rating {
+            font-weight: bold;
+            color: #e76f51;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guest Reviews</h1>
+
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="review-card">
+                <h3>{{ review.user }}</h3>
+                <p class="date">Written on: {{ review.created_at }}</p>
+                <p><strong>Room:</strong> {{ review.room }}</p>
+                <p><strong>Stay Period:</strong> {{ review.stay_period }}</p>
+                <p class="rating">Rating: {{ review.rating }}/10</p>
+                <p>{{ review.text }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No reviews yet.</p>
+    {% endif %}
+</body>
+</html>

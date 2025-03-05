@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reservations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffecd2;
+            color: #4b2e0d;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .reservation-list {
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .reservation-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .reservation-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #6a3e1a;
+        }
+
+        .reservation-card p {
+            margin: 5px 0;
+        }
+
+        .cancel-btn {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .cancel-btn:hover {
+            background: #c92a2a;
+        }
+
+        .toggle-btn {
+            background: #457b9d;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .toggle-btn:hover {
+            background: #1d3557;
+        }
+
+        .past-reservations {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Reservations</h1>
+
+    <h2>Active Reservations</h2>
+    <div class="reservation-list">
+        {% if active_reservations %}
+            {% for reservation in active_reservations %}
+                <div class="reservation-card">
+                    <h3>Hotel: {{ reservation.room.hotel.name }}</h3>
+                    <p>Room: {{ reservation.room.room_type }}</p>
+                    <p>Check-in: {{ reservation.start_date }}</p>
+                    <p>Check-out: {{ reservation.end_date }}</p>
+                    <form method="post" action="{% url 'cancel_reservation' reservation.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="cancel-btn">Cancel Reservation</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No active reservations.</p>
+        {% endif %}
+    </div>
+
+    <h2>Reservation History</h2>
+    <button class="toggle-btn" onclick="toggleHistory()">Show/Hide History</button>
+    <div class="past-reservations">
+        {% if past_reservations %}
+            {% for reservation in past_reservations %}
+                <div class="reservation-card">
+                    <h3>Hotel: {{ reservation.room.hotel.name }}</h3>
+                    <p>Room: {{ reservation.room.number }}</p>
+                    <p>Check-in: {{ reservation.start_date }}</p>
+                    <p>Check-out: {{ reservation.end_date }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No past reservations.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function toggleHistory() {
+            let historyDiv = document.querySelector(".past-reservations");
+            if (historyDiv.style.display === "none" || historyDiv.style.display === "") {
+                historyDiv.style.display = "block";
+            } else {
+                historyDiv.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

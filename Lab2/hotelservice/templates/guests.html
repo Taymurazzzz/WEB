@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Guests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffecd2;
+            color: #4b2e0d;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hotel-container {
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hotel-name {
+            font-size: 1.5rem;
+            color: #6a3e1a;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .guest-list {
+            display: none;
+            padding-left: 10px;
+        }
+
+        .guest {
+            background: #f4f4f4;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            background: #f4a261;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .toggle-btn:hover {
+            background: #e76f51;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guests in the Last Month</h1>
+
+    {% if hotels_data %}
+        {% for hotel in hotels_data %}
+            <div class="hotel-container">
+                <button class="toggle-btn" onclick="toggleGuests('{{ hotel.hotel }}')">
+                    {{ hotel.hotel }}
+                </button>
+                <div class="guest-list" id="guests-{{ hotel.hotel }}">
+                    {% if hotel.guests %}
+                        {% for guest in hotel.guests %}
+                            <div class="guest">
+                                <p><strong>{{ guest.visitor.username }}</strong></p>
+                                <p>Stayed: {{ guest.start_date }} - {{ guest.end_date }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No guests in the last month.</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hotels found.</p>
+    {% endif %}
+
+    <script>
+        function toggleGuests(hotelName) {
+            let guestList = document.getElementById("guests-" + hotelName);
+            if (guestList.style.display === "none" || guestList.style.display === "") {
+                guestList.style.display = "block";
+            } else {
+                guestList.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

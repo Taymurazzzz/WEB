@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rooms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffecd2;
+            color: #4b2e0d;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .room-list {
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .room-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .room-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #6a3e1a;
+        }
+
+        .room-card p {
+            margin: 5px 0;
+        }
+
+        .reserve-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .reserve-btn:hover {
+            background: #218838;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Rooms</h1>
+
+    {% if rooms %}
+        <div class="room-list">
+            {% for room in rooms %}
+                <div class="room-card">
+                    <h3>Room {{ room.number }} - {{ room.room_type }}</h3>
+                    <p>Hotel: {{ room.hotel.name }}</p>
+                    <p>Quality: {{ room.quality }}</p>
+                    <p>Price per night: ${{ room.price_per_night }}</p>
+                    <form method="post" action="{% url 'reserve' room.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="checkin" value="{{ checkin }}">
+                        <input type="hidden" name="checkout" value="{{ checkout }}">
+                        <button type="submit" class="reserve-btn">Reserve</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No available rooms found.</p>
+    {% endif %}
+</body>
+</html>

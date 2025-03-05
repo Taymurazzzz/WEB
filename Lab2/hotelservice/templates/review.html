@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave a Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffecd2;
+            color: #4b2e0d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .review-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .review-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .review-container label {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-align: left;
+            width: 100%;
+        }
+
+        .review-container select,
+        .review-container input,
+        .review-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .review-container textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .review-container button {
+            padding: 10px;
+            background: #f4a261;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .review-container button:hover {
+            background: #e76f51;
+        }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="review-container">
+        <h1>Leave a Review</h1>
+
+        {% if success %}
+            <p class="success-message">Review submitted successfully!</p>
+        {% endif %}
+
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+        <form action="{% url 'review' %}" method="post">
+            {% csrf_token %}
+
+            <label for="room">Select Room:</label>
+            <select name="room" id="room" required>
+                {% for room in rooms %}
+                    <option value="{{ room.id }}">{{ room.hotel.name }} - {{ room.number }}</option>
+                {% empty %}
+                    <option disabled>No rooms available</option>
+                {% endfor %}
+            </select>
+
+            <label for="rating">Rating:</label>
+            <select name="rating" id="rating" required>
+                {% for i in ratings %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="review">Your Review:</label>
+            <textarea name="review" id="review" required placeholder="Write your feedback here..."></textarea>
+
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>

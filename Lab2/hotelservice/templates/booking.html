@@ -70,7 +70,7 @@
 <body>
     <div class="booking-container">
         <h1>Book Your Stay</h1>
-        <form action="/booking/confirm/" method="post">
+        <form action="/booking/" method="post">
             {% csrf_token %}
 
             <label for="hotel">Select Hotel:</label>
@@ -87,27 +87,27 @@
             <label for="checkout">Check-out Date:</label>
             <input type="date" id="checkout" name="checkout" required>
 
-            <label for="guests">Number of Guests:</label>
-            <input type="number" id="guests" name="guests" min="1" max="10" required>
-
-            <label for="room_type">Room Type:</label>
-            <select name="room_type" id="room_type" required>
-                <option value="">-- Choose a Room Type --</option>
-                <option value="single">Single</option>
-                <option value="double">Double</option>
-                <option value="twin">Twin</option>
-                <option value="triple">Triple</option>
-                <option value="quadriple">Quadriple</option>
-
-            </select>
-
-            <label for="room_quality">Room Quality:</label>
-            <select name="room_quality" id="room_quality" required>
-                <option value="">-- Choose Room Quality --</option>
-                <option value="standard">Standard</option>
-                <option value="superior">Superior</option>
-                <option value="luxury">Luxury</option>
-            </select>
+{#            <label for="guests">Number of Guests:</label>#}
+{#            <input type="number" id="guests" name="guests" min="1" max="10" required>#}
+{##}
+{#            <label for="room_type">Room Type:</label>#}
+{#            <select name="room_type" id="room_type" required>#}
+{#                <option value="">-- Choose a Room Type --</option>#}
+{#                <option value="single">Single</option>#}
+{#                <option value="double">Double</option>#}
+{#                <option value="twin">Twin</option>#}
+{#                <option value="triple">Triple</option>#}
+{#                <option value="quadriple">Quadriple</option>#}
+{##}
+{#            </select>#}
+{##}
+{#            <label for="room_quality">Room Quality:</label>#}
+{#            <select name="room_quality" id="room_quality" required>#}
+{#                <option value="">-- Choose Room Quality --</option>#}
+{#                <option value="standard">Standard</option>#}
+{#                <option value="superior">Superior</option>#}
+{#                <option value="luxury">Luxury</option>#}
+{#            </select>#}
 
             <button type="submit">Book Now</button>
         </form>

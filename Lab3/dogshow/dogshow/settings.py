@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'dogshow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DogShow',
+        'NAME': 'dogshow',
         'USER': 'timur',
         'PASSWORD': 'qwe153153',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5434',
     }
 }
 
@@ -135,6 +135,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.TokenAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+    ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_PERMISSION_CLASSES': [
@@ -143,3 +147,9 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'show.User'
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'show.serializers.UserSerializer'
+    }
+}
